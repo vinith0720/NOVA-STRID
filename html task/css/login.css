@@ -1,0 +1,82 @@
+body {
+  background-image: url(../images/yourname.jpg);
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-container {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 350px;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  background: linear-gradient(to right,#aa1db9, #2f6db8, #1275a3,#aa1db9);
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.login-btn:hover {
+  opacity: 0.9;
+}
+
+.extra-link {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.extra-link a {
+  text-decoration: none;
+  color:linear-gradient(to right,#C6FFFF,#182C45,#9077FC,#1E60FD);
+}
+.custom-toast {
+    font-size: 20px !important;   /* text size */
+    /* height: 30px !important;    */
+    width: 250px !important;      /* width */
+    padding: 16px 24px !important;
+    border-radius: 10px !important;
+    line-height: 28px !important;
+  
+  }
+  
+.custom-toast .toast-close {
+    position: absolute;
+    top: 30%;
+    right: 12px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+  }

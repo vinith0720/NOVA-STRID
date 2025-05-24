@@ -1,0 +1,15 @@
+{
+  "entryFile": "swagger.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "controllerPathGlobs": ["swagger.ts"],
+  "spec": {
+    "outputDirectory": ".",
+    "specVersion": 3,
+    "basePath": "/",
+    "outputFile": "./swagger.json"
+  },
+  "routes": {
+    "routesDir": ".",
+    "routesFile": "./routes.ts"
+  }
+}

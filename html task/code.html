@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JS Code with Highlight</title>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
+</head>
+<body>
+
+<h2>JavaScript Code Highlighted:</h2>
+
+<pre><code class="language-javascript">
+    import nodemailer from "nodemailer";
+    import type Mail from "nodemailer/lib/mailer";
+    import type { SendMailOptions } from "nodemailer";
+    import cron from "node-cron";
+    import dotenv from "dotenv";
+    
+    dotenv.config();
+    
+    const transporter: Mail = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.DB_EMAIL,
+        pass: process.env.DB_EMAIL_PASSWORD,
+      },
+      secure: false,
+    });
+    
+    const mailOptions: SendMailOptions = {
+      from: '"Node Team" <vinithkumar0720@gmail.com>',
+    //   to: "",
+      subject: "Sent a demo mail ##!",
+      text: "Thanks for giving your email for my test purpose!",
+      attachments: [
+        {
+          filename: "package.json",
+          path: "./package.json",
+          contentType: "application/json",
+        },
+      ],
+    };
+    
+    const sendmail = async (maildetails: SendMailOptions) => {
+      try {
+        const info = await transporter.sendMail(maildetails);
+        return info;
+      } catch (error: any) {
+        console.log("Error sending email:", error.message);
+        return null;
+      }
+    };
+    
+    // send a email every 30 seconds
+    
+    const task = cron.schedule("*/30 * * * * *", async () => {
+      const response = await sendmail(mailOptions);
+    
+      if (response) {
+        console.log("Email sent:", response.messageId);
+      } else {
+        console.log("Email failed");
+      }
+      console.log("email sent time:", new Date().toLocaleString())
+      task.stop();
+    },{
+        scheduled:false
+    }
+    );
+    
+    console.log("email is ready to sent :", new Date().toLocaleString());
+    console.log("wait 30 seconds to sent a mail by cron ..,");
+    
+    task.start();
+    
+</code></pre>
+
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js"></script>
+
+</body>
+</html>

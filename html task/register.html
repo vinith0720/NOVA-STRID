@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>REGISTER</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <link rel="stylesheet" href="./css/register.css">
+</head>
+
+<body>
+
+  <form id="myForm" action="login.html" method="GET" onsubmit="handleSubmit(event)">
+    <h2>Register your Account</h2>
+
+    <!-- Text input for username -->
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="Enter username" required />
+    <br>
+
+    <!-- Password input -->
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Enter password" required />
+    <br>
+
+    <!-- Email input -->
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter email" />
+    <br>
+
+    <!-- Number input -->
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" min="1" max="100" />
+    <br>
+
+    <!-- Radio buttons (for gender) -->
+    <p>Gender:</p>
+    <label>
+      <input type="radio" name="gender" value="male" /> Male
+    </label>
+    <label>
+      <input type="radio" name="gender" value="female" /> Female
+    </label>
+    <label>
+      <input type="radio" name="gender" value="other" /> Other
+    </label>
+    <br>
+
+    <!-- File input -->
+    <label for="profilePic">Upload Profile Picture:</label>
+    <input type="file" id="profilePic" name="profilePic" />
+    <br>
+
+    <!-- Date picker -->
+    <label for="birthDate">Date of Birth:</label>
+    <input type="date" id="birthDate" name="birthDate" />
+    <br>
+
+    <!-- Telephone input -->
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" name="phone" placeholder="123-456-7890" />
+    <br>
+
+    <!-- URL input -->
+    <label for="website">Website:</label>
+    <input type="url" id="website" name="website" placeholder="https://example.com" />
+    <br>
+
+    <!-- Hidden field (invisible to user, can carry metadata) -->
+    <input type="hidden" name="formType" value="login" />
+
+    <!-- Submit and Reset buttons -->
+    <input type="submit" value="Register" />
+    <input type="reset" value="Clear Form"
+      onclick="showToast('Form cleared',bgcolor ='linear-gradient(to right, #ff9900,#ff66cc)')" />
+    <br><br>
+
+  </form>
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="./js/main.js"></script>
+</body>
+</html>

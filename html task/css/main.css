@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f8f9fa;
+    color: #333;
+  }
+  .section {
+    background: white;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-left: 6px solid #007bff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  }
+  code {
+    background: #f1f1f1;
+    padding: 3px 6px;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 5px 0;
+  }
+  .example {
+    background: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+img {
+    background: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    height: auto;
+    width: 400px;
+  }
+  h1 {
+    color: #007bff;
+  }
