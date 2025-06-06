@@ -1,3 +1,4 @@
+import { ZooCreateInput, ZooUpdateInput } from 'dto/zoo';
 import { NextFunction, Request, Response } from 'express';
 import { ZooService } from 'services/zooService';
 
@@ -29,6 +30,9 @@ export const getZooById = async (req: Request, res: Response, next: NextFunction
 // POST new zoo
 export const createZoo = async (req: Request, res: Response, next: NextFunction) => {
   try {
+    const data: ZooCreateInput = req.body;
+    const zoo = await ZooService.createZoo(data);
+    res.status(201).json(zoo);
   } catch (error) {
     console.error(error);
     next(error);
@@ -38,6 +42,10 @@ export const createZoo = async (req: Request, res: Response, next: NextFunction)
 // PUT update zoo
 export const updateZooById = async (req: Request, res: Response, next: NextFunction) => {
   try {
+    const id = +req.params.id;
+    const data: ZooUpdateInput = req.body;
+    const Zoo = await ZooService.updateZooById(id, data);
+    res.status(200).json(Zoo);
   } catch (error) {
     console.error(error);
     next(error);

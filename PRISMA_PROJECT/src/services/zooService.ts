@@ -6,7 +6,11 @@ import { ZooCreateInput, ZooUpdateInput } from 'dto/zoo';
 export class ZooService {
   static getALLZoo = async () => {
     try {
-      return prisma.zoo.findMany();
+      return prisma.zoo.findMany({
+        include: {
+          animal: true,
+        },
+      });
     } catch (error) {
       console.log('Error in getAllZoo service : ', error);
       throw error;
@@ -46,7 +50,7 @@ export class ZooService {
 
   static getZooById = async (id: number) => {
     try {
-      return prisma.zoo.findUnique({ where: { id: id } });
+      return prisma.zoo.findUnique({ where: { id: id }, include: { animal: true } });
     } catch (error) {
       console.log('Error in getZooById service : ', error);
       throw error;

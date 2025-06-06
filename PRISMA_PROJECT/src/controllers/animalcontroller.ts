@@ -1,3 +1,4 @@
+import { AnimalCreateInput, AnimalUpdateInput } from 'dto/animal';
 import { NextFunction, Request, Response } from 'express';
 import { AnimalService } from 'services/animalService';
 
@@ -31,6 +32,9 @@ export const getAnimalById = async (req: Request, res: Response, next: NextFunct
 // POST new Animal
 export const createAnimal = async (req: Request, res: Response, next: NextFunction) => {
   try {
+    const data: AnimalCreateInput = req.body;
+    const Animal = await AnimalService.createAnimal(data);
+    res.status(201).json(Animal);
   } catch (error) {
     console.error(error);
     next(error);
@@ -40,6 +44,10 @@ export const createAnimal = async (req: Request, res: Response, next: NextFuncti
 // PUT update Animal
 export const updateAnimalById = async (req: Request, res: Response, next: NextFunction) => {
   try {
+    const id = +req.params.id;
+    const data: AnimalUpdateInput = req.body;
+    const Animal = await AnimalService.updateAnimalById(id, data);
+    res.status(200).json(Animal);
   } catch (error) {
     console.error(error);
     next(error);
