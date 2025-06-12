@@ -1,6 +1,6 @@
 import { AnimalCreateInput, AnimalUpdateInput } from 'dto/animal';
 import { NextFunction, Request, Response } from 'express';
-import { AnimalService } from 'services/animalService';
+import { AnimalService } from '@services/animalService';
 
 // GET all Animals
 export const getAllAnimal = async (req: Request, res: Response, next: NextFunction) => {

@@ -1,6 +1,6 @@
 import { ZooCreateInput, ZooUpdateInput } from 'dto/zoo';
 import { NextFunction, Request, Response } from 'express';
-import { ZooService } from 'services/zooService';
+import { ZooService } from '@services/zooService';
 
 // GET all zoos
 export const getAllZoo = async (req: Request, res: Response, next: NextFunction) => {

@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient({ log: ['info', 'query', 'error', 'warn'] });
-
-import { ZooCreateInput, ZooUpdateInput } from 'dto/zoo';
+import prisma from '../client';
+import { ZooCreateInput, ZooUpdateInput } from '@dto/zoo';
 
 export class ZooService {
   static getALLZoo = async () => {

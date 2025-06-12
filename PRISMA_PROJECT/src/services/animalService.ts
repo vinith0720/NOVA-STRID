@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient({ log: ['info', 'query', 'error', 'warn'] });
-
-import { AnimalCreateInput, AnimalUpdateInput } from 'dto/animal';
+import prisma from '../client';
+import { AnimalCreateInput, AnimalUpdateInput } from '@dto/animal';
 
 export class AnimalService {
   static getALLAnimal = async () => {
