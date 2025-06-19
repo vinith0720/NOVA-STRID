@@ -1,0 +1,22 @@
+{
+  "name": "web_sockets",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/ws": "^8.18.1",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^6.0.0",
+    "redis": "^5.5.6",
+    "ws": "^8.18.2",
+    "wscat": "^6.1.0"
+  }
+}
