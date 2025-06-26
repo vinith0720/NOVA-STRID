@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "target": "es2024",
-    "module": "commonjs",
+    "module": "esnext",
     "baseUrl": "./src",
+    "types": ["node"],
     // "paths": {
     //   "@controllers/*": ["controllers/*"],
     //   "@routers/*": ["routers/*"],
@@ -15,5 +16,6 @@
     "strict": true,
     "strictNullChecks": true,
     "skipLibCheck": true
-  }
+  },
+  "exclude": ["node_modules"]
 }
