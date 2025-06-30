@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    /* === Output === */
+    "target": "ES2020", // ES2020 is safe for Node 18+ (adjust if needed)
+    "module": "esnext", // CommonJS for Node.js
+    "outDir": "./dist", // Compiled JS output directory
+    "rootDir": "./src", // Your source TypeScript files
+
+    /* === Module Resolution === */
+    "moduleResolution": "node", // Standard for Node.js
+    "esModuleInterop": true, // Allow default imports from CommonJS modules
+    "allowSyntheticDefaultImports": true, // Allow synthetic default imports (type system)
+    "resolveJsonModule": true, // Import JSON files as modules
+    // "baseUrl": "./src", // Base directory for non-relative imports
+    // "paths": {
+    //   "@controllers/*": ["controllers/*"],
+    //   "@routers/*": ["routers/*"],
+    //   "@dto/*": ["dto/*"],
+    //   "@middleware/*": ["middleware/*"],
+    //   "@services/*": ["services/*"]
+    // },
+
+    /* === Type Safety === */
+    "strict": true, // All strict type-checking options
+    "strictNullChecks": true, // Check for null/undefined
+    "forceConsistentCasingInFileNames": true, // Case-sensitive imports
+    "noImplicitAny": true, // Don't allow `any` implicitly
+    "noImplicitReturns": true, // Functions must return a value
+    "noFallthroughCasesInSwitch": true, // Safer switch statements
+
+    /* === Source Maps === */
+    "sourceMap": true, // Generate .map files
+    "inlineSources": true, // Include original TS source in maps
+
+    /* === Type Checking === */
+    "skipLibCheck": true // Faster builds: skip checking .d.ts files
+  },
+  "include": ["src"], // Include all TS files in src/
+  "exclude": ["node_modules", "dist"] // Ignore build output and dependencies
+}
