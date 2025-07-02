@@ -1,4 +1,4 @@
-// import Openapi from "zod-to-openapi";
+// import { OpenApiGeneratorV3 } from "@asteasolutions/zod-to-openapi";
 // import swaggerUi from "swagger-ui-express";
 // import { Application } from "express";
 // import { BookRegister } from "./register";

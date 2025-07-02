@@ -1,4 +1,4 @@
-// import OpenApi from "zod-to-openapi";
+// import { OpenAPIRegistry } from "@asteasolutions/zod-to-openapi";
 // import { createBookValidate } from "../middleware/zod.validate";
 // import { z } from "zod";
 
@@ -19,7 +19,7 @@
 //     body: {
 //       content: {
 //         "application/json": {
-//           schema: BookRegister.getSchema("createBookValidate"),
+//           schema: createBookValidate.openapi("createBookValidate"),
 //         },
 //       },
 //     },

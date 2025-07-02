@@ -1,4 +1,4 @@
-import prisma from '../client';
+import prisma from '@utils/client';
 import { AnimalCreateInput, AnimalUpdateInput } from '@dto/animal';
 
 export class AnimalService {

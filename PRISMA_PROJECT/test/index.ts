@@ -15,7 +15,7 @@
 
 // File: test/setupTests.ts
 
-import prisma from '../src/client';
+import prisma from '../src/utils/client';
 import { PrismaClient } from '@prisma/client';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 

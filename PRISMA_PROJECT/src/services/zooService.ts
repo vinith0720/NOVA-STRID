@@ -1,4 +1,4 @@
-import prisma from '../client';
+import prisma from '@utils/client';
 import { ZooCreateInput, ZooUpdateInput } from '@dto/zoo';
 
 export class ZooService {

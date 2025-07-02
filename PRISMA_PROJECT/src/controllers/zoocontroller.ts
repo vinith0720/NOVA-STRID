@@ -1,14 +1,27 @@
 import { ZooCreateInput, ZooUpdateInput } from 'dto/zoo';
 import { NextFunction, Request, Response } from 'express';
 import { ZooService } from '@services/zooService';
+import redisClient from '@utils/redis';
 
 // GET all zoos
 export const getAllZoo = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const zoo = await ZooService.getALLZoo();
-    zoo.length > 0
-      ? res.status(200).json(zoo)
-      : res.status(402).json({ message: 'zooes are not found' });
+    const cacheKey = 'zoo:all';
+    const cachedZoos = await redisClient.get(cacheKey);
+    if (cachedZoos) {
+      console.log('✅ Cache hit');
+      return res.status(200).json(JSON.parse(cachedZoos));
+    }
+
+    console.log('⏳ Cache miss → Prisma');
+    const zoos = await ZooService.getALLZoo();
+
+    if (zoos.length > 0) {
+      await redisClient.setEx(cacheKey, 60, JSON.stringify(zoos));
+      return res.status(200).json(zoos);
+    } else {
+      return res.status(404).json({ message: 'Zoos not found' });
+    }
   } catch (error) {
     console.error(error);
     next(error);
