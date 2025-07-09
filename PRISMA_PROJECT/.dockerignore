@@ -1,0 +1,9 @@
+node_modules
+prisma/migration
+test
+.env
+.gitignore
+Dockerfile
+compose.yml
+jest.config.jest
+package-lock.json
