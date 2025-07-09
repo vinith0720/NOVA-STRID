@@ -1,4 +1,4 @@
-import { z, ZodError } from "zod";
+import { z, ZodError } from "zod/v4";
 
 const UserSchema = z.object({
   name: z.string(),
@@ -12,11 +12,20 @@ const UserSchema = z.object({
 
 type User = z.infer<typeof UserSchema>;
 
-const data: User = {
+const data = {
   name: "Vinith",
-  age: 10,
-  email: "VINITH@example.com",
+  age: "10",
+  // email: "VINITH@example.com",
 };
+
+const result = UserSchema.safeParse(data);
+
+if (!result.success) {
+  const err = z.formatError(result.error);
+  console.log(err);
+} else {
+  console.log(result);
+}
 
 // try {
 //   const result = UserSchema.safeParse(data);
@@ -28,11 +37,42 @@ const data: User = {
 //   //   console.log(error);
 // }
 
-const result = UserSchema.safeParse(data);
-if (!result.success) {
-  console.error(result.error);
-} else {
-  console.log(result); // fully typed!
-}
-
 // type USERQ = z.output<typeof UserSchema>;
+
+// const nullishYoda = z.literal("yoda").nullable();
+
+// nullishYoda.safeParse("vinith");
+
+// const result = nullishYoda.safeParse(undefined);
+// if (!result.success) {
+//   console.error(result.error.flatten());
+// } else {
+//   console.log(result); // fully typed!
+// }
+
+// const Recipe = z.object({
+//   title: z.string().optional(),
+//   description: z.string().optional(),
+//   ingredients: z.array(z.string()),
+// });
+
+// const data = Recipe.required({ title: true });
+
+// const MyResult = z.discriminatedUnion("status", [
+//   z.object({ status: z.literal("success"), data: z.string() }),
+//   z.object({ status: z.literal("failed"), error: z.string() }),
+// ]);
+
+// const Person = z.object({ name: z.string() });
+// type Person = z.infer<typeof Person>;
+
+// const Employee = z.object({ role: z.string() });
+// type Employee = z.infer<typeof Employee>;
+
+// const EmployedPerson = z.intersection(Person, Employee);
+// type EmployedPerson = z.infer<typeof EmployedPerson>;
+// // Person & Employee
+const myRegistry = z.registry();
+
+myRegistry.add(z.string());
+myRegistry.add(z.number());
