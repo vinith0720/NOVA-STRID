@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Event {
+  id          String          @id @default(uuid())
+  title       String          @db.Text
+  description String?
+  date        DateTime
+  venueId     String
+  venue       Venue           @relation(fields: [venueId], references: [id])
+  attendees   EventAttendee[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+}
+
+model Attendee {
+  id            String          @id @default(uuid())
+  name          String
+  email         String          @unique
+  registrations EventAttendee[]
+  registeredAt  DateTime        @default(now())
+}
+
+model Venue {
+  id       String  @id @default(uuid())
+  name     String
+  address  String
+  capacity Int
+  events   Event[]
+}
+
+model EventAttendee {
+  id           String   @id @default(uuid())
+  eventId      String
+  attendeeId   String
+  event        Event    @relation(fields: [eventId], references: [id])
+  attendee     Attendee @relation(fields: [attendeeId], references: [id])
+  registeredAt DateTime @default(now())
+
+  @@unique([eventId, attendeeId])
+}
