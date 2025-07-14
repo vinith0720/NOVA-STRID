@@ -48,9 +48,11 @@ export default class AttendeeController {
         email: data.email,
       });
       payload
-        ? res
-            .status(200)
-            .json({ message: "Login success", data: jwttokencreate(data) })
+        ? payload.name === data.name
+          ? res
+              .status(200)
+              .json({ message: "Login success", data: jwttokencreate(data) })
+          : res.status(404).json({ message: "login failed" })
         : res.status(404).json({ message: "Attendee not found" });
     } catch (error) {
       next(error);

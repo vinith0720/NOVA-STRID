@@ -49,7 +49,16 @@ export default class EventService {
 
   static getEventById = async (id: string) => {
     try {
-      return prisma.event.findUnique({ where: { id: id } });
+      return prisma.event.findUnique({
+        where: { id: id },
+        include: {
+          attendees: {
+            include: {
+              attendee: true,
+            },
+          },
+        },
+      });
     } catch (error) {
       console.log("Error in getEventById service : ", error);
       throw error;

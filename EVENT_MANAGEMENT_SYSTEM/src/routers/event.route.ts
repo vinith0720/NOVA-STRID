@@ -7,6 +7,7 @@ import {
   idValidateSchema,
   updateEventSchema,
 } from "@dto/event.dto.js";
+import { createAttendeSchema } from "@dto/attandee.dto.js";
 
 const route = Router();
 
@@ -32,4 +33,22 @@ route.delete(
   ZodValidateMiddleware({ params: idValidateSchema }),
   EventController.deleteEvent
 );
+
+route.post(
+  "/:id/register",
+  authenticate(),
+  ZodValidateMiddleware({
+    params: idValidateSchema,
+    body: createAttendeSchema,
+  }),
+  EventController.attandeeCreateWithEvent
+);
+
+route.get(
+  "/:id/attendee",
+  authenticate(),
+  ZodValidateMiddleware({ params: idValidateSchema }),
+  EventController.getEventBYID
+);
+
 export default route;
