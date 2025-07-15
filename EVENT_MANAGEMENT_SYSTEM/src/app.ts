@@ -41,4 +41,5 @@ app.use(errorHandlingMiddleware);
 // express running
 app.listen(PORT, () => {
   console.log(`SERVER RUNNING ON: ${APP_URL}:${PORT}`);
+  // console.log(`Swagger UI available at http://localhost:${PORT}/api-docs`);
 });

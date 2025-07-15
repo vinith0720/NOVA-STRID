@@ -46,3 +46,5 @@ registry.registerPath({
 });
 
 export { registry };
+
+console.dir(registry, { depth: 7, showHidden: true, colors: true });

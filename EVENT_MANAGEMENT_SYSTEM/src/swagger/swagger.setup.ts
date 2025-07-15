@@ -16,5 +16,5 @@ const swaggerdoc = generator.generateDocument({
 });
 
 export const swaggerSetUp = (app: Application) => {
-  app.use("/docs", swaggerui.serve, swaggerui.setup(swaggerdoc));
+  app.use("/api-docs", swaggerui.serve, swaggerui.setup(swaggerdoc));
 };
