@@ -9,7 +9,8 @@
       "@dto/*": ["dto/*"],
       "@middleware/*": ["middleware/*"],
       "@services/*": ["services/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@swagger/*": ["swagger/*"]
     },
     "esModuleInterop": true,
     "strict": true,

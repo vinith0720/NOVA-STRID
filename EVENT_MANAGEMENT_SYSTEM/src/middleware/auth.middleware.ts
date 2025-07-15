@@ -2,10 +2,11 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { AttendeeCreateInput } from "@dto/attandee.dto.js";
+import { ErrorResponse } from "@dto/index.dto.js";
 dotenv.config();
 
 export interface AuthenticatedRequest extends Request {
-  user?: any;
+  user?: string | jwt.JwtPayload;
 }
 
 const JWT_KEY = process.env.JWT_SECRET_KEY;
@@ -26,7 +27,9 @@ export const authenticate = (secret: string = JWT_KEY) => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      return res.status(401).json({ message: "No token provided" });
+      return res
+        .status(499)
+        .json({ message: "No token provided" } satisfies ErrorResponse);
     }
 
     const token = authHeader.split(" ")[1];
@@ -36,7 +39,9 @@ export const authenticate = (secret: string = JWT_KEY) => {
       req.user = decoded;
       next();
     } catch (err) {
-      res.status(401).json({ message: "Invalid or expired token" });
+      res
+        .status(498)
+        .json({ message: "Invalid or expired token" } satisfies ErrorResponse);
       return;
     }
   };

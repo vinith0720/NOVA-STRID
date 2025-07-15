@@ -1,8 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 import EventService from "@services/event.service.js";
+import prisma from "@utils/client.utils.js";
+
 import { EventCreateInput, EventUpdateInput } from "@dto/event.dto.js";
 import { AttendeeCreateInput } from "@dto/attandee.dto.js";
-import prisma from "@utils/client.utils.js";
+import { ErrorResponse } from "@dto/index.dto.js";
 
 export default class EventController {
   static getAllEvent = async (
@@ -13,10 +15,14 @@ export default class EventController {
     try {
       const responsedata = await EventService.getALLEvent();
       responsedata
-        ? res.status(200).json({ message: "all Event", data: responsedata })
-        : res
-            .status(200)
-            .json({ message: "NO Events are found", data: responsedata });
+        ? res.status(200).json({
+            message: "all Event",
+            data: responsedata,
+          } satisfies ErrorResponse)
+        : res.status(200).json({
+            message: "NO Events are found",
+            data: responsedata,
+          } satisfies ErrorResponse);
     } catch (error) {
       next(error);
     }
@@ -29,9 +35,10 @@ export default class EventController {
     const data: EventCreateInput = req.body;
     try {
       const responsedata = await EventService.createEvent(data);
-      res
-        .status(200)
-        .json({ message: "Event created successfully", data: responsedata });
+      res.status(200).json({
+        message: "Event created successfully",
+        data: responsedata,
+      } satisfies ErrorResponse);
     } catch (error) {
       next(error);
     }
@@ -45,9 +52,10 @@ export default class EventController {
     const id = req.params.id;
     try {
       const responsedata = await EventService.updateEventById(id, data);
-      res
-        .status(200)
-        .json({ message: "event updated successfully", data: responsedata });
+      res.status(200).json({
+        message: "event updated successfully",
+        data: responsedata,
+      } satisfies ErrorResponse);
     } catch (error) {
       next(error);
     }
@@ -60,9 +68,10 @@ export default class EventController {
     const id = req.params.id;
     try {
       const responsedata = await EventService.deleteEventById(id);
-      res
-        .status(200)
-        .json({ message: "event deleted successfully", data: responsedata });
+      res.status(200).json({
+        message: "event deleted successfully",
+        data: responsedata,
+      } satisfies ErrorResponse);
     } catch (error) {
       next(error);
     }
@@ -78,7 +87,9 @@ export default class EventController {
     try {
       const event = await EventService.getEventById(id);
       if (!event) {
-        res.status(200).json({ message: "event id not found " });
+        res
+          .status(200)
+          .json({ message: "event id not found " } satisfies ErrorResponse);
         return;
       }
       const [attendee, eventAttendee] = await prisma.$transaction(
@@ -98,7 +109,9 @@ export default class EventController {
         }
       );
 
-      res.status(201).json({ message: "attendee created successfuly" });
+      res.status(201).json({
+        message: "attendee created successfuly",
+      } satisfies ErrorResponse);
     } catch (error) {
       next(error);
     }
@@ -118,7 +131,9 @@ export default class EventController {
             attendee_count: event.attendees.length,
             data: event,
           })
-        : res.status(404).json({ message: "eventid not found" });
+        : res
+            .status(404)
+            .json({ message: "eventid not found" } satisfies ErrorResponse);
     } catch (error) {
       next(error);
     }

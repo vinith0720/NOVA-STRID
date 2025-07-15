@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
+// import { swaggerSetUp } from "@swagger/swagger.setup.js";
 import { errorHandlingMiddleware } from "@middleware/error.middleware.js";
 import EventRouter from "@routers/event.route.js";
 import AttendeeRouter from "@routers/attandee.route.js";
@@ -24,7 +25,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+// swaggerSetUp(app);
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
