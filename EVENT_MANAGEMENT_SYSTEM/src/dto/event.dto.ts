@@ -1,4 +1,4 @@
-import { z } from "zod/v4";
+import { z } from "zod";
 
 export const idValidate = z.uuid({ message: "Provide valid UUID" });
 export const idValidateSchema = z.object({

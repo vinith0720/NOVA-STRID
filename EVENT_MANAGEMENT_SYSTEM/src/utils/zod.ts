@@ -1,4 +1,4 @@
-import { z as basez } from "zod/v4";
+import { z as basez } from "zod";
 import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
 
 extendZodWithOpenApi(basez);

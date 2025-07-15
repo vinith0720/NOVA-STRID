@@ -2,23 +2,11 @@ import {
   OpenAPIRegistry,
   extendZodWithOpenApi,
 } from "@asteasolutions/zod-to-openapi";
-import { z } from "zod/v4";
+import { createAttendeSchema } from "@dto/attandee.dto.js";
+import { ResponseSchema } from "@dto/index.dto.js";
+import { z } from "zod";
 extendZodWithOpenApi(z);
-
 const registry = new OpenAPIRegistry();
-
-const loginRequestSchema = z
-  .object({
-    name: z.string(),
-  })
-  .openapi("LoginRequest");
-
-const loginResponseSchema = z
-  .object({
-    message: z.string(),
-    token: z.string(),
-  })
-  .openapi("LoginResponse");
 
 registry.registerPath({
   method: "post",
@@ -28,7 +16,7 @@ registry.registerPath({
     body: {
       content: {
         "application/json": {
-          schema: loginRequestSchema,
+          schema: createAttendeSchema,
         },
       },
     },
@@ -38,7 +26,7 @@ registry.registerPath({
       description: "Login success",
       content: {
         "application/json": {
-          schema: loginResponseSchema,
+          schema: ResponseSchema,
         },
       },
     },
@@ -47,4 +35,4 @@ registry.registerPath({
 
 export { registry };
 
-console.dir(registry, { depth: 7, showHidden: true, colors: true });
+// console.dir(registry, { depth: 7, showHidden: true, colors: true });

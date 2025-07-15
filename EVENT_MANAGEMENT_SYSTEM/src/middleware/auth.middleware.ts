@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { AttendeeCreateInput } from "@dto/attandee.dto.js";
-import { ErrorResponse } from "@dto/index.dto.js";
+import { Responsetype } from "@dto/index.dto.js";
 dotenv.config();
 
 export interface AuthenticatedRequest extends Request {
@@ -29,7 +29,7 @@ export const authenticate = (secret: string = JWT_KEY) => {
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res
         .status(499)
-        .json({ message: "No token provided" } satisfies ErrorResponse);
+        .json({ message: "No token provided" } satisfies Responsetype);
     }
 
     const token = authHeader.split(" ")[1];
@@ -41,7 +41,7 @@ export const authenticate = (secret: string = JWT_KEY) => {
     } catch (err) {
       res
         .status(498)
-        .json({ message: "Invalid or expired token" } satisfies ErrorResponse);
+        .json({ message: "Invalid or expired token" } satisfies Responsetype);
       return;
     }
   };

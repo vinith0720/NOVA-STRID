@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { z, ZodObject } from "zod";
-import { ErrorResponse } from "@dto/index.dto.js";
+import { Responsetype } from "@dto/index.dto.js";
 
 interface ValidationSchemas {
   body?: ZodObject;
@@ -19,7 +19,7 @@ export const ZodValidateMiddleware =
           return res.status(400).json({
             message: "Invalid body",
             errors: z.prettifyError(result.error),
-          } satisfies ErrorResponse);
+          } satisfies Responsetype);
         }
         req.body = result.data;
       }
@@ -30,7 +30,7 @@ export const ZodValidateMiddleware =
           return res.status(400).json({
             message: "Invalid query",
             errors: z.prettifyError(result.error),
-          } satisfies ErrorResponse);
+          } satisfies Responsetype);
         }
         req.query = result.data as any;
       }
@@ -41,7 +41,7 @@ export const ZodValidateMiddleware =
           return res.status(400).json({
             message: "Invalid params",
             errors: z.prettifyError(result.error),
-          } satisfies ErrorResponse);
+          } satisfies Responsetype);
         }
         req.params = result.data as any;
       }
@@ -52,7 +52,7 @@ export const ZodValidateMiddleware =
           return res.status(400).json({
             message: "Invalid headers",
             errors: z.prettifyError(result.error),
-          } satisfies ErrorResponse);
+          } satisfies Responsetype);
         }
         req.headers = result.data as any;
       }

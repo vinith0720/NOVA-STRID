@@ -4,7 +4,7 @@ import prisma from "@utils/client.utils.js";
 
 import { EventCreateInput, EventUpdateInput } from "@dto/event.dto.js";
 import { AttendeeCreateInput } from "@dto/attandee.dto.js";
-import { ErrorResponse } from "@dto/index.dto.js";
+import { Responsetype } from "@dto/index.dto.js";
 
 export default class EventController {
   static getAllEvent = async (
@@ -18,11 +18,11 @@ export default class EventController {
         ? res.status(200).json({
             message: "all Event",
             data: responsedata,
-          } satisfies ErrorResponse)
+          } satisfies Responsetype)
         : res.status(200).json({
             message: "NO Events are found",
             data: responsedata,
-          } satisfies ErrorResponse);
+          } satisfies Responsetype);
     } catch (error) {
       next(error);
     }
@@ -38,7 +38,7 @@ export default class EventController {
       res.status(200).json({
         message: "Event created successfully",
         data: responsedata,
-      } satisfies ErrorResponse);
+      } satisfies Responsetype);
     } catch (error) {
       next(error);
     }
@@ -55,7 +55,7 @@ export default class EventController {
       res.status(200).json({
         message: "event updated successfully",
         data: responsedata,
-      } satisfies ErrorResponse);
+      } satisfies Responsetype);
     } catch (error) {
       next(error);
     }
@@ -71,7 +71,7 @@ export default class EventController {
       res.status(200).json({
         message: "event deleted successfully",
         data: responsedata,
-      } satisfies ErrorResponse);
+      } satisfies Responsetype);
     } catch (error) {
       next(error);
     }
@@ -89,7 +89,7 @@ export default class EventController {
       if (!event) {
         res
           .status(200)
-          .json({ message: "event id not found " } satisfies ErrorResponse);
+          .json({ message: "event id not found " } satisfies Responsetype);
         return;
       }
       const [attendee, eventAttendee] = await prisma.$transaction(
@@ -111,7 +111,7 @@ export default class EventController {
 
       res.status(201).json({
         message: "attendee created successfuly",
-      } satisfies ErrorResponse);
+      } satisfies Responsetype);
     } catch (error) {
       next(error);
     }
@@ -133,7 +133,7 @@ export default class EventController {
           })
         : res
             .status(404)
-            .json({ message: "eventid not found" } satisfies ErrorResponse);
+            .json({ message: "eventid not found" } satisfies Responsetype);
     } catch (error) {
       next(error);
     }

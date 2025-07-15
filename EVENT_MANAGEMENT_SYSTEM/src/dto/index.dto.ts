@@ -1,8 +1,9 @@
-import { z } from "zod/v4";
-export const ErrorResponseSchema = z.object({
+import { z } from "zod";
+export const ResponseSchema = z.object({
   message: z.string(),
   errors: z.any().optional(),
   data: z.any().optional(),
 });
+// .openapi({ description: "the Response Shema" });
 
-export type ErrorResponse = z.infer<typeof ErrorResponseSchema>;
+export type Responsetype = z.infer<typeof ResponseSchema>;

@@ -1,8 +1,9 @@
-import { z } from "zod/v4";
+import { z } from "zod";
 export const createAttendeSchema = z.object({
   name: z.string().min(3, "provide a name with minimum 3 character"),
   email: z.email().transform((x) => x.toLocaleLowerCase()),
 });
+// .openapi({ description: "Attendee Create and login" });
 
 export const updateAttendeSchema = createAttendeSchema.partial();
 

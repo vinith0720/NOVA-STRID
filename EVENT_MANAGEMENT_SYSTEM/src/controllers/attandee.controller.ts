@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { jwttokencreate } from "@middleware/auth.middleware.js";
 import AttendeeService from "@services/attandee.service.js";
 import { AttendeeCreateInput } from "@dto/attandee.dto.js";
-import { ErrorResponse } from "@dto/index.dto.js";
+import { Responsetype } from "@dto/index.dto.js";
 export default class AttendeeController {
   static getAllAttendee = async (
     req: Request,
@@ -15,11 +15,11 @@ export default class AttendeeController {
         ? res.status(200).json({
             message: "all attendee",
             data: responsedata,
-          } satisfies ErrorResponse)
+          } satisfies Responsetype)
         : res.status(200).json({
             message: "no attendees are found",
             data: responsedata,
-          } satisfies ErrorResponse);
+          } satisfies Responsetype);
     } catch (error) {
       next(error);
     }
@@ -36,7 +36,7 @@ export default class AttendeeController {
       res.status(200).json({
         message: "Attende created successfully",
         data: responsedata,
-      } satisfies ErrorResponse);
+      } satisfies Responsetype);
     } catch (error) {
       next(error);
     }
@@ -57,13 +57,13 @@ export default class AttendeeController {
           ? res.status(200).json({
               message: "Login success",
               data: jwttokencreate(data),
-            } satisfies ErrorResponse)
+            } satisfies Responsetype)
           : res
               .status(404)
-              .json({ message: "login failed" } satisfies ErrorResponse)
+              .json({ message: "login failed" } satisfies Responsetype)
         : res
             .status(404)
-            .json({ message: "Attendee not found" } satisfies ErrorResponse);
+            .json({ message: "Attendee not found" } satisfies Responsetype);
     } catch (error) {
       next(error);
     }
