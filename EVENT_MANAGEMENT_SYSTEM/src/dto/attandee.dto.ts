@@ -1,4 +1,5 @@
-import { z } from "zod";
+import { z } from "@utils/zod.js";
+
 export const createAttendeSchema = z.object({
   name: z.string().min(3, "provide a name with minimum 3 character"),
   email: z.email().transform((x) => x.toLocaleLowerCase()),

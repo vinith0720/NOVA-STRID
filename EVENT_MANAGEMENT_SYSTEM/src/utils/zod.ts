@@ -1,6 +1,6 @@
-import { z as basez } from "zod";
+import { z } from "zod";
 import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
 
-extendZodWithOpenApi(basez);
+extendZodWithOpenApi(z);
 
-export const z = basez;
+export { z };

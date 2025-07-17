@@ -33,10 +33,11 @@ export default class AttendeeController {
     const body: AttendeeCreateInput = req.body;
     try {
       const responsedata = await AttendeeService.createAttendee(body);
-      res.status(200).json({
-        message: "Attende created successfully",
-        data: responsedata,
-      } satisfies Responsetype);
+      // res.status(200).json({
+      //   message: "Attende created successfully",
+      //   data: responsedata,
+      // } satisfies Responsetype);
+      res.render("login", { error: null });
     } catch (error) {
       next(error);
     }
@@ -56,8 +57,8 @@ export default class AttendeeController {
         ? payload.name === data.name
           ? res.status(200).json({
               message: "Login success",
-              data: jwttokencreate(data),
-            } satisfies Responsetype)
+              token: jwttokencreate(data),
+            })
           : res
               .status(404)
               .json({ message: "login failed" } satisfies Responsetype)

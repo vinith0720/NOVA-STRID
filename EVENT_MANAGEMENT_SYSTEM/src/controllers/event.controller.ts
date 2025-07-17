@@ -35,7 +35,7 @@ export default class EventController {
     const data: EventCreateInput = req.body;
     try {
       const responsedata = await EventService.createEvent(data);
-      res.status(200).json({
+      res.status(201).json({
         message: "Event created successfully",
         data: responsedata,
       } satisfies Responsetype);
