@@ -7,7 +7,8 @@ import {
 export default class EventAttendeService {
   static readonly getALLEventAttende = async () => {
     try {
-      return prisma.eventAttendee.findMany();
+      const result = await prisma.eventAttendee.findMany();
+      return result;
     } catch (error) {
       console.log("Error in getAllEventAttende service : ", error);
       throw error;
@@ -18,11 +19,12 @@ export default class EventAttendeService {
     data: EventAttendeCreateInput
   ) => {
     try {
-      return prisma.eventAttendee.create({
+      const result = await prisma.eventAttendee.create({
         data: {
           ...data,
         },
       });
+      return result;
     } catch (error) {
       console.log("Error in createEventAttende service : ", error);
       throw error;
@@ -34,10 +36,11 @@ export default class EventAttendeService {
     updateEventAttende: EventAttendeUpdateInput
   ) => {
     try {
-      return prisma.eventAttendee.update({
+      const result = await prisma.eventAttendee.update({
         data: { ...updateEventAttende },
         where: { id },
       });
+      return result;
     } catch (error) {
       console.log("Error in updateEventAttendeById service : ", error);
       throw error;
@@ -46,9 +49,10 @@ export default class EventAttendeService {
 
   static readonly deleteEventAttendeById = async (id: string) => {
     try {
-      return prisma.eventAttendee.delete({
+      const result = await prisma.eventAttendee.delete({
         where: { id },
       });
+      return result;
     } catch (error) {
       console.log("Error in deleteEventAttendeById service : ", error);
       throw error;
@@ -57,9 +61,10 @@ export default class EventAttendeService {
 
   static readonly getEventAttendeById = async (id: string) => {
     try {
-      return prisma.eventAttendee.findUnique({
+      const result = await prisma.eventAttendee.findUnique({
         where: { id: id },
       });
+      return result;
     } catch (error) {
       console.log("Error in getEventAttendeById service : ", error);
       throw error;

@@ -8,7 +8,8 @@ import {
 export default class AttendeeService {
   static readonly getALLAttendee = async () => {
     try {
-      return prisma.attendee.findMany();
+      const result = await prisma.attendee.findMany();
+      return result;
     } catch (error) {
       console.log("Error in getAllAttendee service : ", error);
       throw error;
@@ -17,11 +18,12 @@ export default class AttendeeService {
 
   static readonly createAttendee = async (data: AttendeeCreateInput) => {
     try {
-      return prisma.attendee.create({
+      const result = await prisma.attendee.create({
         data: {
           ...data,
         },
       });
+      return result;
     } catch (error) {
       console.log("Error in createAttendee service : ", error);
       throw error;
@@ -33,10 +35,11 @@ export default class AttendeeService {
     updateAttendee: AttendeeUpdateInput
   ) => {
     try {
-      return prisma.attendee.update({
+      const result = await prisma.attendee.update({
         data: { ...updateAttendee },
         where: { id },
       });
+      return result;
     } catch (error) {
       console.log("Error in updateAttendeeById service : ", error);
       throw error;
@@ -45,7 +48,8 @@ export default class AttendeeService {
 
   static readonly deleteAttendeeById = async (id: string) => {
     try {
-      return prisma.attendee.delete({ where: { id } });
+      const result = await prisma.attendee.delete({ where: { id } });
+      return result;
     } catch (error) {
       console.log("Error in deleteAttendeeById service : ", error);
       throw error;
@@ -54,9 +58,10 @@ export default class AttendeeService {
 
   static readonly getAttendeeByIdorEmail = async (input: GetAttendeeInput) => {
     try {
-      return prisma.attendee.findUnique({
+      const result = await prisma.attendee.findUnique({
         where: input.id ? { id: input.id } : { email: input.email },
       });
+      return result;
     } catch (error) {
       console.log("Error in getAttendeeById service : ", error);
       throw error;

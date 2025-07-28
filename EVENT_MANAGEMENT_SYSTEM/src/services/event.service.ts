@@ -4,7 +4,8 @@ import { EventCreateInput, EventUpdateInput } from "@dto/event.dto.js";
 export default class EventService {
   static readonly getALLEvent = async () => {
     try {
-      return prisma.event.findMany();
+      const events = await prisma.event.findMany();
+      return events;
     } catch (error) {
       console.log("Error in getAllEvent service : ", error);
       throw error;
@@ -13,12 +14,13 @@ export default class EventService {
 
   static readonly createEvent = async (data: EventCreateInput) => {
     try {
-      return prisma.event.create({
+      const event = await prisma.event.create({
         data: {
           ...data,
           date: new Date(data.date),
         },
       });
+      return event;
     } catch (error) {
       console.log("Error in createEvent service : ", error);
       throw error;
@@ -30,7 +32,11 @@ export default class EventService {
     updateEvent: EventUpdateInput
   ) => {
     try {
-      return prisma.event.update({ data: { ...updateEvent }, where: { id } });
+      const updateevent = await prisma.event.update({
+        data: { ...updateEvent },
+        where: { id },
+      });
+      return updateevent;
     } catch (error) {
       console.log("Error in updateEventById service : ", error);
       throw error;
@@ -39,7 +45,8 @@ export default class EventService {
 
   static readonly deleteEventById = async (id: string) => {
     try {
-      return prisma.event.delete({ where: { id } });
+      const event = await prisma.event.delete({ where: { id } });
+      return event;
     } catch (error) {
       console.log("Error in deleteEventById service : ", error);
       throw error;
@@ -48,7 +55,7 @@ export default class EventService {
 
   static readonly getEventById = async (id: string) => {
     try {
-      return prisma.event.findUnique({
+      const event = await prisma.event.findUnique({
         where: { id: id },
         include: {
           attendees: {
@@ -58,6 +65,7 @@ export default class EventService {
           },
         },
       });
+      return event;
     } catch (error) {
       console.log("Error in getEventById service : ", error);
       throw error;
