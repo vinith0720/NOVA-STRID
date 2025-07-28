@@ -5,7 +5,7 @@ import {
 } from "@dto/eventattende.js";
 
 export default class EventAttendeService {
-  static getALLEventAttende = async () => {
+  static readonly getALLEventAttende = async () => {
     try {
       return prisma.eventAttendee.findMany();
     } catch (error) {
@@ -14,7 +14,9 @@ export default class EventAttendeService {
     }
   };
 
-  static createEventAttende = async (data: EventAttendeCreateInput) => {
+  static readonly createEventAttende = async (
+    data: EventAttendeCreateInput
+  ) => {
     try {
       return prisma.eventAttendee.create({
         data: {
@@ -27,7 +29,7 @@ export default class EventAttendeService {
     }
   };
 
-  static updateEventAttendeById = async (
+  static readonly updateEventAttendeById = async (
     id: string,
     updateEventAttende: EventAttendeUpdateInput
   ) => {
@@ -42,7 +44,7 @@ export default class EventAttendeService {
     }
   };
 
-  static deleteEventAttendeById = async (id: string) => {
+  static readonly deleteEventAttendeById = async (id: string) => {
     try {
       return prisma.eventAttendee.delete({
         where: { id },
@@ -53,7 +55,7 @@ export default class EventAttendeService {
     }
   };
 
-  static getEventAttendeById = async (id: string) => {
+  static readonly getEventAttendeById = async (id: string) => {
     try {
       return prisma.eventAttendee.findUnique({
         where: { id: id },

@@ -7,7 +7,7 @@ import { AttendeeCreateInput } from "@dto/attandee.dto.js";
 import { Responsetype } from "@dto/index.dto.js";
 
 export default class EventController {
-  static getAllEvent = async (
+  static readonly getAllEvent = async (
     req: Request,
     res: Response,
     next: NextFunction
@@ -27,7 +27,7 @@ export default class EventController {
       next(error);
     }
   };
-  static createEvent = async (
+  static readonly createEvent = async (
     req: Request,
     res: Response,
     next: NextFunction
@@ -43,7 +43,7 @@ export default class EventController {
       next(error);
     }
   };
-  static updateEvent = async (
+  static readonly updateEvent = async (
     req: Request,
     res: Response,
     next: NextFunction
@@ -60,7 +60,7 @@ export default class EventController {
       next(error);
     }
   };
-  static deleteEvent = async (
+  static readonly deleteEvent = async (
     req: Request,
     res: Response,
     next: NextFunction
@@ -77,7 +77,7 @@ export default class EventController {
     }
   };
 
-  static attandeeCreateWithEvent = async (
+  static readonly attandeeCreateWithEvent = async (
     req: Request,
     res: Response,
     next: NextFunction
@@ -117,7 +117,7 @@ export default class EventController {
     }
   };
 
-  static getEventBYID = async (
+  static readonly getEventBYID = async (
     req: Request,
     res: Response,
     next: NextFunction

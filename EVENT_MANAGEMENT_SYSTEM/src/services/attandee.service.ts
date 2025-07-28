@@ -6,7 +6,7 @@ import {
 } from "@dto/attandee.dto.js";
 
 export default class AttendeeService {
-  static getALLAttendee = async () => {
+  static readonly getALLAttendee = async () => {
     try {
       return prisma.attendee.findMany();
     } catch (error) {
@@ -15,7 +15,7 @@ export default class AttendeeService {
     }
   };
 
-  static createAttendee = async (data: AttendeeCreateInput) => {
+  static readonly createAttendee = async (data: AttendeeCreateInput) => {
     try {
       return prisma.attendee.create({
         data: {
@@ -28,7 +28,7 @@ export default class AttendeeService {
     }
   };
 
-  static updateAttendeeById = async (
+  static readonly updateAttendeeById = async (
     id: string,
     updateAttendee: AttendeeUpdateInput
   ) => {
@@ -43,7 +43,7 @@ export default class AttendeeService {
     }
   };
 
-  static deleteAttendeeById = async (id: string) => {
+  static readonly deleteAttendeeById = async (id: string) => {
     try {
       return prisma.attendee.delete({ where: { id } });
     } catch (error) {
@@ -52,7 +52,7 @@ export default class AttendeeService {
     }
   };
 
-  static getAttendeeByIdorEmail = async (input: GetAttendeeInput) => {
+  static readonly getAttendeeByIdorEmail = async (input: GetAttendeeInput) => {
     try {
       return prisma.attendee.findUnique({
         where: input.id ? { id: input.id } : { email: input.email },

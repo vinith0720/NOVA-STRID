@@ -1,5 +1,4 @@
-import { Request, Response, NextFunction, Router } from "express";
-import AttendeeController from "@controllers/attandee.controller.js";
+import { Request, Response, Router } from "express";
 
 const route = Router();
 

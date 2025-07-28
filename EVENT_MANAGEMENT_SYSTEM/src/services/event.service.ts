@@ -1,9 +1,8 @@
 import prisma from "@utils/client.utils.js";
 import { EventCreateInput, EventUpdateInput } from "@dto/event.dto.js";
-import { date } from "zod";
 
 export default class EventService {
-  static getALLEvent = async () => {
+  static readonly getALLEvent = async () => {
     try {
       return prisma.event.findMany();
     } catch (error) {
@@ -12,7 +11,7 @@ export default class EventService {
     }
   };
 
-  static createEvent = async (data: EventCreateInput) => {
+  static readonly createEvent = async (data: EventCreateInput) => {
     try {
       return prisma.event.create({
         data: {
@@ -26,7 +25,7 @@ export default class EventService {
     }
   };
 
-  static updateEventById = async (
+  static readonly updateEventById = async (
     id: string,
     updateEvent: EventUpdateInput
   ) => {
@@ -38,7 +37,7 @@ export default class EventService {
     }
   };
 
-  static deleteEventById = async (id: string) => {
+  static readonly deleteEventById = async (id: string) => {
     try {
       return prisma.event.delete({ where: { id } });
     } catch (error) {
@@ -47,7 +46,7 @@ export default class EventService {
     }
   };
 
-  static getEventById = async (id: string) => {
+  static readonly getEventById = async (id: string) => {
     try {
       return prisma.event.findUnique({
         where: { id: id },

@@ -4,7 +4,7 @@ import AttendeeService from "@services/attandee.service.js";
 import { AttendeeCreateInput } from "@dto/attandee.dto.js";
 import { Responsetype } from "@dto/index.dto.js";
 export default class AttendeeController {
-  static getAllAttendee = async (
+  static readonly getAllAttendee = async (
     req: Request,
     res: Response,
     next: NextFunction
@@ -25,7 +25,7 @@ export default class AttendeeController {
     }
   };
 
-  static createAttendee = async (
+  static readonly createAttendee = async (
     req: Request,
     res: Response,
     next: NextFunction
@@ -43,7 +43,7 @@ export default class AttendeeController {
     }
   };
 
-  static attendeeLogin = async (
+  static readonly attendeeLogin = async (
     req: Request,
     res: Response,
     next: NextFunction
